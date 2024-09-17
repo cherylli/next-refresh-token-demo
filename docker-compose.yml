@@ -1,0 +1,22 @@
+services:
+  app:
+    build: .
+    ports:
+      - '3012:3000'
+    volumes:
+      - /usr/src/app/node_modules
+      - .:/usr/src/app
+    command: ['yarn', 'dev']
+    env_file:
+      - .env.local
+    environment:
+      - NEXT_PUBLIC_API_BASEURL=http://api:8000/api/v1
+      - NEXTAUTH_URL=http://localhost:3012
+    restart:
+      always
+    networks:
+      - chingu-dashboard-be
+
+networks:
+  chingu-dashboard-be:
+    external: true
