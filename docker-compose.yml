@@ -6,7 +6,7 @@ services:
     volumes:
       - /usr/src/app/node_modules
       - .:/usr/src/app
-    command: ['yarn', 'dev']
+    command: ['npm', 'run', 'dev']
     env_file:
       - .env.local
     environment:
