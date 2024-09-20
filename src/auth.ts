@@ -13,7 +13,7 @@ const credentialsConfig = Credentials({
     async authorize(credentials) {
         try {
             const authResponse = await axios.post(
-                `${process.env.NEXT_PUBLIC_API_BASEURL}/auth/login`, {
+                `${process.env.API_BASEURL}/auth/login`, {
                     "email": credentials.email,
                     "password": credentials.password
                 })
@@ -38,7 +38,7 @@ const credentialsConfig = Credentials({
             }
 
             const userRes = await axios.get(
-                `${process.env.NEXT_PUBLIC_API_BASEURL}/users/me`,
+                `${process.env.API_BASEURL}/users/me`,
                 {
                     headers: {
                         cookie: authCookies

@@ -7,7 +7,9 @@ export const refreshServer = async () => {
     console.log("--- Refresh Token Server ---")
     const refreshToken = cookies().get('refresh_token')?.value || ''
 
-    const refreshResponse =await axios.post(`http://localhost:8000/api/v1/auth/refresh`, {}, {
+    // on docker it needs to be http://api:8000/api/v1 instead of http://localhost:8000/api/v1,
+    // TODO: update to use env variables
+    const refreshResponse =await axios.post(`${process.env.API_BASEURL}/auth/refresh`, {}, {
         headers: {
             'Content-Type': 'application/json',
             Cookie: `refresh_token=${refreshToken}`
