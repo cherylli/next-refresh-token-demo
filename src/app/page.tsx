@@ -2,17 +2,12 @@
 
 import {refreshServer} from "@/services/refresh";
 import axios from "axios";
-import {GET} from "@/services/requests";
+import {getRequest} from "@/services/requests";
 
 export default function Home() {
 
   const handleRefreshServer = async () => {
       await refreshServer()
-    /*
-    // client side refresh
-
-
-     */
   }
 
   const handleRefreshClient = async () => {
@@ -25,8 +20,9 @@ export default function Home() {
   }
 
   const getMeServer = async () => {
-      const res = await GET('users/me')
-      console.log(JSON.stringify(res.data))
+      console.log("--- Get Me Server ---")
+      const me = await getRequest('users/me')
+      console.log(me)
   }
 
   return (

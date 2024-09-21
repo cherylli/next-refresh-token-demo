@@ -4,19 +4,22 @@ import {cookies} from "next/headers";
 import {refreshServer} from "@/services/refresh";
 import axios from "axios";
 
-const accessToken = cookies().get('access_token')?.value || ''
 
-export const GET = async (path: string) => {
 
-    console.log("GET", accessToken)
+export const getRequest = async (path: string) => {
+    console.log("--- GET Request ---")
+    let accessToken = cookies().get('access_token')?.value || ''
+
     if (!accessToken) {
         await refreshServer()
     }
-    return axios.post(`${process.env.API_BASEURL}/${path}`, {}, {
+    accessToken = cookies().get('access_token')?.value || ''
+
+    const res = await axios.get(`${process.env.API_BASEURL}/${path}`, {
         headers: {
-            'Content-Type': 'application/json',
             Cookie: `access_token=${accessToken}`
         },
         withCredentials: true
     })
+    return res.data
 }

@@ -1,7 +1,6 @@
 'use server'
 import axios from "axios";
 import {cookies} from "next/headers";
-import {parse} from "cookie";
 
 const accessToken = cookies().get('access_token')?.value || ''
 const refreshToken = cookies().get('refresh_token')?.value || ''
