@@ -2,6 +2,7 @@
 
 import {refreshServer} from "@/services/refresh";
 import axios from "axios";
+import {GET} from "@/services/requests";
 
 export default function Home() {
 
@@ -23,11 +24,22 @@ export default function Home() {
       })
   }
 
+  const getMeServer = async () => {
+      const res = await GET('users/me')
+      console.log(JSON.stringify(res.data))
+  }
+
   return (
-    <main>
-        <button onClick={handleRefreshServer}>Refresh (Server)</button>
-        <br/>
-        <button onClick={handleRefreshClient}>Refresh (Client)</button>
-    </main>
+      <main>
+          <button onClick={handleRefreshServer}>Refresh (Server)</button>
+          <br/>
+          <button onClick={handleRefreshClient}>Refresh (Client)</button>
+          <br/>
+          <br/>
+          <button onClick={handleRefreshClient}>Refresh (Client)</button>
+          <br/>
+          <button onClick={getMeServer}>Get (Server)</button>
+          <br/>
+      </main>
   );
 }

@@ -1,7 +1,8 @@
 'use server'
 import axios from "axios";
 import {cookies} from "next/headers";
-import {setCookies} from "@/utils/axios";
+import {setCookies} from "@/utils/set-cookies";
+
 
 export const refreshServer = async () => {
     console.log("--- Refresh Token Server ---")
@@ -9,7 +10,7 @@ export const refreshServer = async () => {
 
     // on docker it needs to be http://api:8000/api/v1 instead of http://localhost:8000/api/v1,
     // TODO: update to use env variables
-    const refreshResponse =await axios.post(`${process.env.API_BASEURL}/auth/refresh`, {}, {
+    const refreshResponse = await axios.post(`${process.env.API_BASEURL}/auth/refresh`, {}, {
         headers: {
             'Content-Type': 'application/json',
             Cookie: `refresh_token=${refreshToken}`
