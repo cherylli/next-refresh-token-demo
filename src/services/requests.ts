@@ -3,6 +3,7 @@
 import {cookies} from "next/headers";
 import {refreshServer} from "@/services/refresh";
 import axios from "axios";
+import axiosInstance from "@/utils/axios";
 
 
 
@@ -21,5 +22,10 @@ export const getRequest = async (path: string) => {
         },
         withCredentials: true
     })
+    return res.data
+}
+
+export const getRequestWithInterceptor = async (path: string) => {
+    const res = await axiosInstance.get(path)
     return res.data
 }

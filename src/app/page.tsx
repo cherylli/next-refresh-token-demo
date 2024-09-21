@@ -2,7 +2,8 @@
 
 import {refreshServer} from "@/services/refresh";
 import axios from "axios";
-import {getRequest} from "@/services/requests";
+import {getRequest, getRequestWithInterceptor} from "@/services/requests";
+
 
 export default function Home() {
 
@@ -20,8 +21,12 @@ export default function Home() {
   }
 
   const getMeServer = async () => {
-      console.log("--- Get Me Server ---")
       const me = await getRequest('users/me')
+      console.log(me)
+  }
+
+  const getMeInterceptor = async () => {
+      const me = await getRequestWithInterceptor('users/me')
       console.log(me)
   }
 
@@ -32,9 +37,9 @@ export default function Home() {
           <button onClick={handleRefreshClient}>Refresh (Client)</button>
           <br/>
           <br/>
-          <button onClick={handleRefreshClient}>Refresh (Client)</button>
-          <br/>
           <button onClick={getMeServer}>Get (Server)</button>
+          <br/>
+          <button onClick={getMeInterceptor}>Get (Interceptor)</button>
           <br/>
       </main>
   );
