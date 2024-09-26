@@ -5,8 +5,6 @@ import {refreshServer} from "@/services/refresh";
 import axios from "axios";
 import axiosInstance from "@/utils/axios";
 
-
-
 export const getRequest = async (path: string) => {
     console.log("--- GET Request ---")
     let accessToken = cookies().get('access_token')?.value || ''

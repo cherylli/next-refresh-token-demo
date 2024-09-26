@@ -1,8 +1,7 @@
 import NextAuth, {CredentialsSignin, NextAuthConfig} from "next-auth"
 import Credentials from "@auth/core/providers/credentials";
-import {parse} from "cookie";
-import {cookies} from "next/headers";
 import axios, {AxiosError} from "axios";
+import {setCookies} from "@/utils/set-cookies";
 
 
 const credentialsConfig = Credentials({
@@ -19,23 +18,7 @@ const credentialsConfig = Credentials({
                 })
 
             const authCookies = authResponse.headers['set-cookie']
-            if (authCookies && authCookies.length > 0) {
-                authCookies.forEach(cookie => {
-                    const parsedCookie = parse(cookie)
-                    const [cookieName, cookieValue] = Object.entries(parsedCookie)[0]
-
-                    cookies().set({
-                        name: cookieName,
-                        value: cookieValue,
-                        httpOnly: true,
-                        maxAge: parseInt(parsedCookie["Max-Age"]),
-                        path: parsedCookie.path,
-                        sameSite: 'none',
-                        expires: new Date(parsedCookie.expires),
-                        secure: true,
-                    })
-                })
-            }
+            await setCookies(authCookies)
 
             const userRes = await axios.get(
                 `${process.env.API_BASEURL}/users/me`,
@@ -50,7 +33,6 @@ const credentialsConfig = Credentials({
                 // TODO maybe find a better error to throw
                 throw new Error("Auth - cannot fetch user detail")
             }
-
 
             return {
                 id: userRes.data.id,

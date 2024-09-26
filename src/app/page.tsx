@@ -12,7 +12,7 @@ export default function Home() {
   }
 
   const handleRefreshClient = async () => {
-      await axios.post(`http://localhost:8000/api/v1/auth/refresh`, {}, {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_BASEURL}/auth/refresh`, {}, {
           headers: {
               'Content-Type': 'application/json',
           },

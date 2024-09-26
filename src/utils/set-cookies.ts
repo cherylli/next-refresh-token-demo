@@ -4,12 +4,10 @@ import {cookies} from "next/headers";
 export const setCookies = async (authCookies: string[] | undefined) => {
     'use server'
     console.log("--- Setting Cookies (Server)---")
-    console.log(`setCookies`, authCookies)
     if (authCookies && authCookies.length > 0) {
         authCookies.forEach(cookie => {
             const parsedCookie = parse(cookie)
             const [cookieName, cookieValue] = Object.entries(parsedCookie)[0]
-
 
             cookies().set({
                 name: cookieName,
