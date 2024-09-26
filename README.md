@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Refresh Access Token Demo
+
+Refresh access token demo with Next.js, Auth.js, HTTPOnly cookies, 
+using an existing NestJS backend for authentication.
+
+The article is available on my blog: [Handling Refresh Token with Next.js, Auth.js (next-auth v5) Credentials Provider, and HTTPOnly Cookie](https://hashnode.com/draft/66f3bc1cb63bb3af88f65124)
 
 ## Getting Started
+1. Clone this repo
+    ```bash
+    git clone https://github.com/cherylli/next-refresh-token-demo.git
+    ```
 
-First, run the development server:
+2. Install dependencies
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    ```bash
+    cd next-refresh-token-demo
+    npm install
+    ```
+    Alternatively, use Docker, app will run on port 3012
+    ```bash
+    docker compose up
+    ```
+3. Environment variables
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    Copy `.env` content to `.env.local`, and insert `AUTH_SECRET`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run the app
 
-## Learn More
+    ```bash
+    npm run dev
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+Note: The backend used is available here: https://github.com/chingu-x/chingu-dashboard-be
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Pages
+- `/api/auth/signin` - Sign in page
+- `/` - Home page with buttons to test out actions
+- `/redirect` - Mostly same as `/`, but it was used to test redirect after login
+- `/server` - Demonstrates error when not calling `refresh` from a client component
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0). 
+The GPL is a copyleft license that requires anyone who distributes your code or a derivative work to make the source available under the same terms. 
+This ensures that all users have the freedom to run, study, share, and modify the software.
