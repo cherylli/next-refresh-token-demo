@@ -40,7 +40,7 @@ Note: The backend used is available here: https://github.com/chingu-x/chingu-das
 - `/redirect` - Mostly same as `/`, but it was used to test redirect after login
 - `/server` - Demonstrates error when not calling `refresh` from a client component
 
-![image](https://github.com/user-attachments/assets/2f850512-29cd-4dbb-9160-3000da2112fe)
+![image](https://github.com/user-attachments/assets/19a39bd4-8dde-4e86-aeda-ef35b6c0c54d)
 ![image](https://github.com/user-attachments/assets/20ff0e8b-4cbf-4cf4-a001-15ab3f6b5f6b)
 
 
